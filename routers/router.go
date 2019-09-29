@@ -1,7 +1,10 @@
 package routers
 
 import (
+	"fmt"
+	jwt "gin-blog/middleware"
 	"gin-blog/pkg/setting"
+	"gin-blog/routers/api"
 	v1 "gin-blog/routers/api/v1"
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +18,20 @@ func InitRouter() *gin.Engine {
 
 	gin.SetMode(setting.RunMode)
 
+	r.GET("/auth", api.GetAuth) //jwt get token
+
 	apiv1 := r.Group("/api/v1")
+	apiv1.Use(jwt.JWT()) //对该组api做认证授权 check token
+
+	r.Use(func(c *gin.Context) {
+		fmt.Println("r->middleware test")
+		c.Next()
+	})
+	apiv1.Use(func(c *gin.Context) {
+		fmt.Println("apiv1->middleware test")
+		c.Next()
+	})
+
 	{
 		//获取标签列表
 		apiv1.GET("/tags", v1.GetTags)

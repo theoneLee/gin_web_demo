@@ -1,3 +1,65 @@
+GET http://127.0.0.1:8000/api/v1/articles?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE1Njk3NTgzODEsImlzcyI6Imdpbi1ibG9nIn0.cqU5TU_oVFzSp4AJZFW4yXzDyyJwUUGUrLWyF7DlorA
+
+<> 2019-09-29T051501.200.json
+
+###
+
+GET http://127.0.0.1:8000/auth?username=test&password=test123456
+
+<> 2019-09-29T051401.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/articles/1
+
+<> 2019-09-29T051345.401.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/articles?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE1Njk3NTgzODEsImlzcyI6Imdpbi1ibG9nIn0.cqU5TU_oVFzSp4AJZFW4yXzDyyJwUUGUrLWyF7DlorA
+
+<> 2019-09-29T050656.200.json
+
+###
+
+GET http://127.0.0.1:8000/auth?username=test&password=test123456
+
+<> 2019-09-29T050640.200.json
+
+###
+
+GET http://127.0.0.1:8000/auth?username=test1&password=test123456
+
+<> 2019-09-29T050634.200.json
+
+###
+
+GET http://127.0.0.1:8000/auth?username=test1&password=test123456
+
+<> 2019-09-29T050554.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/articles?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE1Njk3NTgzODEsImlzcyI6Imdpbi1ibG9nIn0.cqU5TU_oVFzSp4AJZFW4yXzDyyJwUUGUrLWyF7DlorA
+
+<> 2019-09-29T050120.200.json
+
+###
+
+GET http://127.0.0.1:8000/auth?username=test&password=test123456
+
+<> 2019-09-29T045941.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/tags
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-09-29T045650.401.json
+
+###
+
 GET http://127.0.0.1:8000/api/v1/articles
 
 <> 2019-09-29T032613.200.json
