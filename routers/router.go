@@ -20,7 +20,7 @@ func InitRouter() *gin.Engine {
 	r.GET("/auth", api.GetAuth) //jwt get token
 
 	apiv1 := r.Group("/api/v1")
-	//apiv1.Use(jwt.JWT()) //对该组api做认证授权 check token
+	//apiv1.Use(jwt.JWT()) //对该组api做认证授权 check token todo 便于测试而删除
 
 	r.Use(func(c *gin.Context) {
 		fmt.Println("r->middleware test")

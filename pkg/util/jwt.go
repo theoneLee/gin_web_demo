@@ -25,7 +25,7 @@ func GenerateToken(username, password string) (string, error) {
 		password,
 		jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
-			Issuer:    "gin-blog",
+			Issuer:    "gin-blog", //todo 需要改？参见jwt-go 文档
 		},
 	}
 
