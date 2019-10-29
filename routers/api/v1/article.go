@@ -97,6 +97,7 @@ func AddArticle(c *gin.Context) {
 	content := c.Query("content")
 	createdBy := c.Query("created_by")
 	state := com.StrTo(c.DefaultQuery("state", "0")).MustInt()
+	writerId := c.Query("writer_id")
 
 	valid := validation.Validation{}
 	valid.Min(tagId, 1, "tag_id").Message("标签ID必须大于0")
@@ -116,6 +117,7 @@ func AddArticle(c *gin.Context) {
 			data["content"] = content
 			data["created_by"] = createdBy
 			data["state"] = state
+			data["writer_id"] = writerId
 
 			models.AddArticle(data)
 			code = e.SUCCESS
@@ -145,6 +147,7 @@ func EditArticle(c *gin.Context) {
 	desc := c.Query("desc")
 	content := c.Query("content")
 	modifiedBy := c.Query("modified_by")
+	writerId := c.Query("writer_id")
 
 	var state int = -1
 	if arg := c.Query("state"); arg != "" {
@@ -175,6 +178,9 @@ func EditArticle(c *gin.Context) {
 				}
 				if content != "" {
 					data["content"] = content
+				}
+				if writerId != "" {
+					data["writer_id"] = writerId
 				}
 
 				data["modified_by"] = modifiedBy

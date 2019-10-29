@@ -10,7 +10,7 @@ type Article struct {
 	Model
 
 	TagID int `json:"tag_id" gorm:"index"`
-	Tag   Tag `json:"tag"`
+	Tag   Tag `json:"tag" gorm:"PRELOAD:false"`
 
 	Title      string `json:"title"`
 	Desc       string `json:"desc"`
@@ -18,6 +18,8 @@ type Article struct {
 	CreatedBy  string `json:"created_by"`
 	ModifiedBy string `json:"modified_by"`
 	State      int    `json:"state"`
+
+	WriterId1 string `json:"writer_id_1" gorm:"column:writer_id"`
 }
 
 func (article *Article) BeforeCreate(scope *gorm.Scope) error {
@@ -50,14 +52,14 @@ func GetArticleTotal(maps interface{}) (count int) {
 }
 
 func GetArticles(pageNum int, pageSize int, maps interface{}) (articles []Article) {
-	db.Preload("Tag").Where(maps).Offset(pageNum).Limit(pageSize).Find(&articles)
+	db.Debug().Preload("Tag").Where(maps).Offset(pageNum).Limit(pageSize).Find(&articles)
 
 	return
 }
 
 func GetArticle(id int) (article Article) {
-	db.Where("id = ?", id).First(&article)
-	db.Model(&article).Related(&article.Tag)
+	db.Debug().Where("id = ?", id).First(&article)
+	db.Debug().Model(&article).Related(&article.Tag)
 
 	return
 }
@@ -76,6 +78,7 @@ func AddArticle(data map[string]interface{}) bool {
 		Content:   data["content"].(string),
 		CreatedBy: data["created_by"].(string),
 		State:     data["state"].(int),
+		WriterId1: data["writer_id"].(string),
 	})
 
 	return true

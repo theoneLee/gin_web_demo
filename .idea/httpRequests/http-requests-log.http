@@ -1,236 +1,300 @@
-GET http://127.0.0.1:8000/api/v1/articles?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE1Njk3NTgzODEsImlzcyI6Imdpbi1ibG9nIn0.cqU5TU_oVFzSp4AJZFW4yXzDyyJwUUGUrLWyF7DlorA
+GET http://127.0.0.1:8000/api/v1/writers/1
 
-<> 2019-09-29T051501.200.json
-
-###
-
-GET http://127.0.0.1:8000/auth?username=test&password=test123456
-
-<> 2019-09-29T051401.200.json
+<> 2019-10-10T032641.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/articles/1
+GET http://127.0.0.1:8000/api/v1/articles/4
 
-<> 2019-09-29T051345.401.json
-
-###
-
-GET http://127.0.0.1:8000/api/v1/articles?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE1Njk3NTgzODEsImlzcyI6Imdpbi1ibG9nIn0.cqU5TU_oVFzSp4AJZFW4yXzDyyJwUUGUrLWyF7DlorA
-
-<> 2019-09-29T050656.200.json
+<> 2019-10-10T032612.200.json
 
 ###
 
-GET http://127.0.0.1:8000/auth?username=test&password=test123456
+GET http://127.0.0.1:8000/api/v1/articles/4
 
-<> 2019-09-29T050640.200.json
-
-###
-
-GET http://127.0.0.1:8000/auth?username=test1&password=test123456
-
-<> 2019-09-29T050634.200.json
+<> 2019-10-10T032543.200.json
 
 ###
 
-GET http://127.0.0.1:8000/auth?username=test1&password=test123456
+GET http://127.0.0.1:8000/api/v1/writers/1
 
-<> 2019-09-29T050554.200.json
-
-###
-
-GET http://127.0.0.1:8000/api/v1/articles?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE1Njk3NTgzODEsImlzcyI6Imdpbi1ibG9nIn0.cqU5TU_oVFzSp4AJZFW4yXzDyyJwUUGUrLWyF7DlorA
-
-<> 2019-09-29T050120.200.json
+<> 2019-10-10T032323.200.json
 
 ###
 
-GET http://127.0.0.1:8000/auth?username=test&password=test123456
+GET http://127.0.0.1:8000/api/v1/writers/2
 
-<> 2019-09-29T045941.200.json
+<> 2019-10-10T032253.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/tags
-Accept: */*
-Cache-Control: no-cache
+GET http://127.0.0.1:8000/api/v1/writers
 
-<> 2019-09-29T045650.401.json
+<> 2019-10-10T031631.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/2
+
+<> 2019-10-10T031353.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/2
+
+<> 2019-10-10T031217.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T030849.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T022905.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T022841.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T022748.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T022444.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T022413.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T022317.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T021331.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T021002.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T020903.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T020509.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T015655.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T121716.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T121352.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T120748.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T120641.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T120510.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T114807.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T114617.200.json
+
+###
+
+POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=testwriter11&desc=test-desc&content=test-content&created_by=test-created&state=1&writer_id=1
+
+<> 2019-10-10T114548.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T114446.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers
+
+<> 2019-10-10T113255.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/2
+
+<> 2019-10-10T113241.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T113230.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/2
+
+<> 2019-10-10T113223.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T113153.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T113142.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T113024.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/articles/4
+
+<> 2019-10-10T113012.200.json
 
 ###
 
 GET http://127.0.0.1:8000/api/v1/articles
 
-<> 2019-09-29T032613.200.json
+<> 2019-10-10T112914.200.json
 
 ###
 
-POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=test1&desc=test-desc&content=test-content&created_by=test-created&state=1
+POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=testwriter&desc=test-desc&content=test-content&created_by=test-created&state=1&writer_id=1
 
-<> 2019-09-29T032607.200.json
-
-###
-
-DELETE http://127.0.0.1:8000/api/v1/articles/2
-
-<> 2019-09-29T032556.200.json
+<> 2019-10-10T112839.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/articles
+POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=testwriter&desc=test-desc&content=test-content&created_by=test-created&state=1&writer_id=1
 
-<> 2019-09-29T032531.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=test1&desc=test-desc&content=test-content&created_by=test-created&state=1
-
-<> 2019-09-29T032523.200.json
+<> 2019-10-10T112747.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/tags
+POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=testwriter&desc=test-desc&content=test-content&created_by=test-created&state=1&writer_id=1
+
+<> 2019-10-10T111344.200.json
+
+###
+
+POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=testwriter&desc=test-desc&content=test-content&created_by=test-created&state=1&writer_id=1
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T110938.200.json
+
+###
+
+GET http://127.0.0.1:8000/api/v1/writers/1
+
+<> 2019-10-10T110149.200.json
+
+###
+
+POST http://127.0.0.1:8000/api/v1/writer?name=wn2
 Accept: */*
 Cache-Control: no-cache
 
-<> 2019-09-29T032454.200.json
+<> 2019-10-10T110142.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/articles/1
+GET http://127.0.0.1:8000/api/v1/writers/1
 
-<> 2019-09-29T032437.200.json
-
-###
-
-PUT http://127.0.0.1:8000/api/v1/articles/1?tag_id=4&title=test-edit1&desc=test-desc-edit&content=test-content-edit&modified_by=test-created-edit&state=0
-
-<> 2019-09-29T032433.200.json
+<> 2019-10-10T105946.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/articles/1
+GET http://127.0.0.1:8000/api/v1/writers
 
-<> 2019-09-29T032407.200.json
-
-###
-
-PUT http://127.0.0.1:8000/api/v1/articles/1?tag_id=3&title=test-edit1&desc=test-desc-edit&content=test-content-edit&modified_by=test-created-edit&state=0
-
-<> 2019-09-29T032404.200.json
+<> 2019-10-10T105938.200.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/articles/1
+GET http://127.0.0.1:8000/api/v1/writers/1
 
-<> 2019-09-29T032319.200.json
-
-###
-
-PUT http://127.0.0.1:8000/api/v1/articles/1?tag_id=2&title=test-edit1&desc=test-desc-edit&content=test-content-edit&modified_by=test-created-edit&state=0
-
-<> 2019-09-29T032314.200.json
+<> 2019-10-10T105847.200.json
 
 ###
 
-POST http://127.0.0.1:8000/api/v1/tags?name=3&state=1&created_by=test
-Accept: */*
-Cache-Control: no-cache
+GET http://127.0.0.1:8000/api/v1/writers/1
 
-<> 2019-09-29T032221.200.json
+<> 2019-10-10T105657.500.json
 
 ###
 
-GET http://127.0.0.1:8000/api/v1/articles/1
+GET http://127.0.0.1:8000/api/v1/writers/1
 
-<> 2019-09-29T032146.200.json
-
-###
-
-GET http://127.0.0.1:8000/api/v1/articles
-
-<> 2019-09-29T032114.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/articles?tag_id=2&title=test1&desc=test-desc&content=test-content&created_by=test-created&state=1
-
-<> 2019-09-29T032043.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/articles?tag_id=1&title=test1&desc=test-desc&content=test-content&created_by=test-created&state=1
-
-<> 2019-09-29T032031.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/tags?name=1&state=1&created_by=test
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T032027.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/articles?tag_id=1&title=test1&desc=test-desc&content=test-content&created_by=test-created&state=1
-
-<> 2019-09-29T031954.200.json
-
-###
-
-GET http://127.0.0.1:8000/api/v1/tags
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T120929.200.json
-
-###
-
-DELETE http://127.0.0.1:8000/api/v1/tags/1
-
-<> 2019-09-29T120923.200.json
-
-###
-
-GET http://127.0.0.1:8000/api/v1/tags
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T120907.200.json
-
-###
-
-PUT http://127.0.0.1:8000/api/v1/tags/1?name=edit1&state=0&modified_by=edit1
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T120826.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/tags?name=2&state=1&created_by=test
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T114913.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/tags?name=1&state=1&created_by=test
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T114851.200.json
-
-###
-
-POST http://127.0.0.1:8000/api/v1/tags?name=1&state=1&created_by=test
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-09-29T113646.200.json
+<> 2019-10-10T105452.500.json
 
 ###
 

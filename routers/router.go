@@ -2,7 +2,6 @@ package routers
 
 import (
 	"fmt"
-	jwt "gin-blog/middleware"
 	"gin-blog/pkg/setting"
 	"gin-blog/routers/api"
 	v1 "gin-blog/routers/api/v1"
@@ -21,7 +20,7 @@ func InitRouter() *gin.Engine {
 	r.GET("/auth", api.GetAuth) //jwt get token
 
 	apiv1 := r.Group("/api/v1")
-	apiv1.Use(jwt.JWT()) //对该组api做认证授权 check token
+	//apiv1.Use(jwt.JWT()) //对该组api做认证授权 check token
 
 	r.Use(func(c *gin.Context) {
 		fmt.Println("r->middleware test")
@@ -52,6 +51,11 @@ func InitRouter() *gin.Engine {
 		apiv1.PUT("/articles/:id", v1.EditArticle)
 		//删除指定文章
 		apiv1.DELETE("/articles/:id", v1.DeleteArticle)
+
+		apiv1.GET("/writers/:id", v1.GetWriter)
+		apiv1.GET("/writers", v1.GetWriters)
+		apiv1.POST("/writer", v1.AddWriter)
+
 	}
 
 	return r
