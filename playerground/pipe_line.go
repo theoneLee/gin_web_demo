@@ -93,7 +93,8 @@ func producer2(list []int) chan int {
 }
 
 func processor2(inputChan <-chan int, outPutChan chan int) { //
-	defer close(outPutChan) // todo
+	//defer close(outPutChan) // todo 如果这里关闭chan，导致consumer2不会阻塞在select，每个outPutChan会一直拿到零值，导致time.After极大可能不会执行，从而程序不会关闭
+	//todo 但实际场景下，生产者，处理者，消费者都不会关闭，也不需要time.After分支跳出consumer2的执行
 	for i := range inputChan {
 		time.Sleep(1 * time.Second)
 		outPutChan <- i * 2
@@ -101,19 +102,34 @@ func processor2(inputChan <-chan int, outPutChan chan int) { //
 }
 
 func consumer2(outPutChan ...chan int) {
-OUT:
+	//signChan := make(chan struct{})
+
 	for {
 		select {
 		case i := <-outPutChan[0]:
 			fmt.Println("outPutChan[0]:", i)
 		case i := <-outPutChan[1]:
 			fmt.Println("outPutChan[1]:", i)
-		case i := <-outPutChan[2]:
-			fmt.Println("outPutChan[2]:", i)
+		case i, ok := <-outPutChan[2]: //ok 为false时，表示该通道已关闭
+			if ok {
+				fmt.Println("outPutChan[1]:", i)
+			}
 		case <-time.After(12 * time.Second):
 			fmt.Println("time out")
 			goto OUT
 		}
-
 	}
+OUT:
+}
+
+func Test2() {
+	outPutChan1 := make(chan int)
+	outPutChan2 := make(chan int)
+	outPutChan3 := make(chan int)
+
+	c := producer([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+	go processor2(c, outPutChan1)
+	go processor2(c, outPutChan2)
+	go processor2(c, outPutChan3)
+	consumer2(outPutChan1, outPutChan2, outPutChan3)
 }
