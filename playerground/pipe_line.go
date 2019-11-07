@@ -2,6 +2,7 @@ package playerground
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -132,4 +133,73 @@ func Test2() {
 	go processor2(c, outPutChan2)
 	go processor2(c, outPutChan3)
 	consumer2(outPutChan1, outPutChan2, outPutChan3)
+}
+
+func producer3(nums ...int) <-chan int {
+	out := make(chan int)
+	go func() {
+		defer close(out)
+		for _, n := range nums {
+			out <- n
+		}
+	}()
+	return out
+}
+
+func processor3(inCh <-chan int) <-chan int {
+	out := make(chan int)
+	go func() {
+		defer close(out)
+		for n := range inCh {
+			out <- n * n
+		}
+	}()
+
+	return out
+}
+
+func merge(cs ...<-chan int) <-chan int {
+	out := make(chan int)
+
+	var wg sync.WaitGroup
+
+	collect := func(in <-chan int) {
+		defer wg.Done()
+		for n := range in {
+			out <- n
+		}
+	}
+
+	wg.Add(len(cs))
+	// FAN-IN
+	for _, c := range cs {
+		go collect(c)
+	}
+
+	// 错误方式：直接等待是bug，死锁，因为merge写了out，main却没有读
+	// wg.Wait()
+	// close(out)
+
+	// 正确方式
+	go func() {
+		wg.Wait()  //该goroutine会阻塞在这里，只有wg.Done()执行，使得信号量为0时，取消阻塞。
+		close(out) //关闭该chan ，使得Test3的for ret := range merge(c1, c2, c3) 取消阻塞，跳出循环
+	}()
+
+	return out
+}
+
+func Test3() {
+	in := producer3(1, 2, 3, 4)
+
+	// FAN-OUT
+	c1 := processor3(in)
+	c2 := processor3(in)
+	c3 := processor3(in)
+
+	// consumer
+	for ret := range merge(c1, c2, c3) {
+		fmt.Printf("%3d ", ret)
+	}
+	fmt.Println()
 }
