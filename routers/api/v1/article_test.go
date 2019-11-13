@@ -14,6 +14,9 @@ var dao = mockArticleDao{map[int]*models.Article{
 	3: new(models.Article),
 }}
 
+//参考onenote笔记 "Go 方法，接口"
+// https://onedrive.live.com/view.aspx?resid=54FDED4F8B6CD09C%218378&id=documents&wd=target%28%E4%BA%91%E8%97%8F%E6%95%B0%E6%8D%AE%2Fgo.one%7C3F7DD993-0459-A141-A68C-D6533CDC109C%2FGo%20%E6%96%B9%E6%B3%95%EF%BC%8C%E6%8E%A5%E5%8F%A3%7C6290CD4F-C9BC-ED41-B1C2-C8FE58A9FD9F%2F%29 onenote:https://d.docs.live.net/54fded4f8b6cd09c/文档/新的历程（为以后身边的人不痛苦而努力，姑丈，我不会忘记。）/云藏数据/go.one#Go%20方法，接口&section-id={3F7DD993-0459-A141-A68C-D6533CDC109C}&page-id={6290CD4F-C9BC-ED41-B1C2-C8FE58A9FD9F}&end
+
 type mockArticleDao struct {
 	m map[int]*models.Article
 }
@@ -77,6 +80,7 @@ func (dao *mockArticleDao) DeleteArticle(id int) bool {
 	return true
 }
 
+//todo 有个bug。使得该测试无法运行
 func TestGetArticle(t *testing.T) {
 	id := 1
 
