@@ -1,5 +1,10 @@
 package models
 
+type TagCRUD interface {
+	ExistByID(id int) bool
+	Get(id int) (t Tag)
+}
+
 type Tag struct {
 	Model
 

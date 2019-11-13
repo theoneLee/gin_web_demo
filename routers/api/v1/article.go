@@ -25,11 +25,13 @@ func GetArticle(c *gin.Context) {
 	valid := validation.Validation{}
 	valid.Min(id, 1, "id").Message("ID必须大于0")
 
+	dao := models.ArticleDao{}
+
 	code := e.INVALID_PARAMS
 	var data interface{}
 	if !valid.HasErrors() {
-		if models.ExistArticleByID(id) {
-			data = models.GetArticle(id)
+		if dao.ExistByID(id) {
+			data = dao.Get(id)
 			code = e.SUCCESS
 		} else {
 			code = e.ERROR_NOT_EXIST_ARTICLE
@@ -53,6 +55,8 @@ func GetArticles(c *gin.Context) {
 	maps := make(map[string]interface{})
 	valid := validation.Validation{}
 
+	dao := models.ArticleDao{}
+
 	var state int = -1
 	if arg := c.Query("state"); arg != "" {
 		state = com.StrTo(arg).MustInt()
@@ -73,8 +77,8 @@ func GetArticles(c *gin.Context) {
 	if !valid.HasErrors() {
 		code = e.SUCCESS
 
-		data["lists"] = models.GetArticles(util.GetPage(c), setting.PageSize, maps)
-		data["total"] = models.GetArticleTotal(maps)
+		data["lists"] = dao.GetArticles(util.GetPage(c), setting.PageSize, maps)
+		data["total"] = dao.GetArticleTotal(maps)
 
 	} else {
 		for _, err := range valid.Errors {
@@ -107,6 +111,8 @@ func AddArticle(c *gin.Context) {
 	valid.Required(createdBy, "created_by").Message("创建人不能为空")
 	valid.Range(state, 0, 1, "state").Message("状态只允许0或1")
 
+	dao := models.ArticleDao{}
+
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {
 		if models.ExistTagByID(tagId) {
@@ -119,7 +125,7 @@ func AddArticle(c *gin.Context) {
 			data["state"] = state
 			data["writer_id"] = writerId
 
-			models.AddArticle(data)
+			dao.AddArticle(data)
 			code = e.SUCCESS
 		} else {
 			code = e.ERROR_NOT_EXIST_TAG
@@ -162,9 +168,11 @@ func EditArticle(c *gin.Context) {
 	valid.Required(modifiedBy, "modified_by").Message("修改人不能为空")
 	valid.MaxSize(modifiedBy, 100, "modified_by").Message("修改人最长为100字符")
 
+	dao := models.ArticleDao{}
+
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {
-		if models.ExistArticleByID(id) {
+		if dao.ExistByID(id) {
 			if models.ExistTagByID(tagId) {
 				data := make(map[string]interface{})
 				if tagId > 0 {
@@ -185,7 +193,7 @@ func EditArticle(c *gin.Context) {
 
 				data["modified_by"] = modifiedBy
 
-				models.EditArticle(id, data)
+				dao.EditArticle(id, data)
 				code = e.SUCCESS
 			} else {
 				code = e.ERROR_NOT_EXIST_TAG
@@ -213,10 +221,12 @@ func DeleteArticle(c *gin.Context) {
 	valid := validation.Validation{}
 	valid.Min(id, 1, "id").Message("ID必须大于0")
 
+	dao := models.ArticleDao{}
+
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {
-		if models.ExistArticleByID(id) {
-			models.DeleteArticle(id)
+		if dao.ExistByID(id) {
+			dao.DeleteArticle(id)
 			code = e.SUCCESS
 		} else {
 			code = e.ERROR_NOT_EXIST_ARTICLE

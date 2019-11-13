@@ -6,6 +6,21 @@ import (
 	"time"
 )
 
+type ArticleCRUD interface {
+	ExistByID(id int) bool
+	Get(id int) (t Article) //可以看TagCRUD接口，拥有同名方法也没关系
+	GetArticleTotal(maps interface{}) (count int)
+	GetArticles(pageNum int, pageSize int, maps interface{}) (articles []Article)
+	//GetArticle(id int) (article Article)
+	EditArticle(id int, data interface{}) bool
+	AddArticle(data map[string]interface{}) bool
+	DeleteArticle(id int) bool
+}
+
+//ArticleDao 实现ArticleCRUD接口，后续写单元测试时可以很方便的将数据库依赖替换
+type ArticleDao struct {
+}
+
 type Article struct {
 	Model
 
@@ -34,7 +49,7 @@ func (article *Article) BeforeUpdate(scope *gorm.Scope) error {
 	return nil
 }
 
-func ExistArticleByID(id int) bool {
+func (ArticleDao) ExistByID(id int) bool {
 	var article Article
 	db.Select("id").Where("id = ?", id).First(&article)
 
@@ -45,18 +60,26 @@ func ExistArticleByID(id int) bool {
 	return false
 }
 
-func GetArticleTotal(maps interface{}) (count int) {
+func (ArticleDao) Get(id int) (article Article) {
+	db.Debug().Where("id = ?", id).First(&article)
+	db.Debug().Model(&article).Related(&article.Tag)
+
+	return
+}
+
+func (ArticleDao) GetArticleTotal(maps interface{}) (count int) {
 	db.Model(&Article{}).Where(maps).Count(&count)
 
 	return
 }
 
-func GetArticles(pageNum int, pageSize int, maps interface{}) (articles []Article) {
+func (ArticleDao) GetArticles(pageNum int, pageSize int, maps interface{}) (articles []Article) {
 	db.Debug().Preload("Tag").Where(maps).Offset(pageNum).Limit(pageSize).Find(&articles)
 
 	return
 }
 
+// models包 的方法
 func GetArticle(id int) (article Article) {
 	db.Debug().Where("id = ?", id).First(&article)
 	db.Debug().Model(&article).Related(&article.Tag)
@@ -64,13 +87,13 @@ func GetArticle(id int) (article Article) {
 	return
 }
 
-func EditArticle(id int, data interface{}) bool {
+func (ArticleDao) EditArticle(id int, data interface{}) bool {
 	db.Model(&Article{}).Where("id = ?", id).Updates(data)
 
 	return true
 }
 
-func AddArticle(data map[string]interface{}) bool {
+func (ArticleDao) AddArticle(data map[string]interface{}) bool {
 	db.Create(&Article{
 		TagID:     data["tag_id"].(int),
 		Title:     data["title"].(string),
@@ -84,7 +107,7 @@ func AddArticle(data map[string]interface{}) bool {
 	return true
 }
 
-func DeleteArticle(id int) bool {
+func (ArticleDao) DeleteArticle(id int) bool {
 	db.Where("id = ?", id).Delete(Article{})
 
 	return true
