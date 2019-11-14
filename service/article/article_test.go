@@ -81,7 +81,7 @@ func (dao *mockArticleDao) DeleteArticle(id int) bool {
 
 func TestService_GetArticle(t *testing.T) {
 	srv := NewService(&mockdao)
-	id := 1 //1~3 will pass
+	id := 1 //1~3 will pass //todo 可做基于表的测试。整理web controller，service，dao 的最佳实践（上面的mockdao可以利用工具生成）
 	data, code := srv.GetArticle(id)
 	if code == e.ERROR_NOT_EXIST_ARTICLE {
 		t.Fail()
