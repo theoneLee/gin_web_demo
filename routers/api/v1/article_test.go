@@ -22,9 +22,9 @@ type mockArticleDao struct {
 }
 
 func (dao *mockArticleDao) ExistByID(id int) bool {
-	article, ok := dao.m[id]
+	_, ok := dao.m[id]
 
-	if ok && article.ID > 0 {
+	if ok {
 		return true
 	}
 
@@ -80,7 +80,9 @@ func (dao *mockArticleDao) DeleteArticle(id int) bool {
 	return true
 }
 
-//todo 有个bug。使得该测试无法运行
+// 有个bug。使得该测试无法运行。使用go test ./... 无法通过，除去多个main的问题，还有：
+//Fail to parse 'conf/app.ini': open conf/app.ini: no such file or directory
+//检查test的working directory 为项目根目录，而不是v1包
 func TestGetArticle(t *testing.T) {
 	id := 1
 
@@ -102,7 +104,7 @@ func TestGetArticle(t *testing.T) {
 		}
 	}
 
-	fmt.Printf("code:%v   data:%+v", code, data)
+	fmt.Printf("code:%v   data:%+v \n", code, data)
 
 	//c.JSON(http.StatusOK, gin.H{
 	//	"code": code,
