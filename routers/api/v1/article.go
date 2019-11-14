@@ -1,10 +1,11 @@
 package v1
 
 /*
-  service层
+  controller层
 */
 
 import (
+	"gin-blog/service/article"
 	"log"
 	"net/http"
 
@@ -18,24 +19,21 @@ import (
 	"gin-blog/pkg/util"
 )
 
-//获取单个文章
+var service *article.Service
+var dao = models.ArticleSqlDao{}
+
+//获取单个文章 todo (这个是已经将controller和service分离的demo)
 func GetArticle(c *gin.Context) {
 	id := com.StrTo(c.Param("id")).MustInt()
 
 	valid := validation.Validation{}
 	valid.Min(id, 1, "id").Message("ID必须大于0")
 
-	dao := models.ArticleDao{}
-
 	code := e.INVALID_PARAMS
 	var data interface{}
 	if !valid.HasErrors() {
-		if dao.ExistByID(id) {
-			data = dao.Get(id)
-			code = e.SUCCESS
-		} else {
-			code = e.ERROR_NOT_EXIST_ARTICLE
-		}
+		service = article.NewService(dao)
+		data, code = service.GetArticle(id)
 	} else {
 		for _, err := range valid.Errors {
 			log.Printf("err.key: %s, err.message: %s", err.Key, err.Message)
@@ -54,8 +52,6 @@ func GetArticles(c *gin.Context) {
 	data := make(map[string]interface{})
 	maps := make(map[string]interface{})
 	valid := validation.Validation{}
-
-	dao := models.ArticleDao{}
 
 	var state int = -1
 	if arg := c.Query("state"); arg != "" {
@@ -110,8 +106,6 @@ func AddArticle(c *gin.Context) {
 	valid.Required(content, "content").Message("内容不能为空")
 	valid.Required(createdBy, "created_by").Message("创建人不能为空")
 	valid.Range(state, 0, 1, "state").Message("状态只允许0或1")
-
-	dao := models.ArticleDao{}
 
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {
@@ -168,8 +162,6 @@ func EditArticle(c *gin.Context) {
 	valid.Required(modifiedBy, "modified_by").Message("修改人不能为空")
 	valid.MaxSize(modifiedBy, 100, "modified_by").Message("修改人最长为100字符")
 
-	dao := models.ArticleDao{}
-
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {
 		if dao.ExistByID(id) {
@@ -220,8 +212,6 @@ func DeleteArticle(c *gin.Context) {
 
 	valid := validation.Validation{}
 	valid.Min(id, 1, "id").Message("ID必须大于0")
-
-	dao := models.ArticleDao{}
 
 	code := e.INVALID_PARAMS
 	if !valid.HasErrors() {

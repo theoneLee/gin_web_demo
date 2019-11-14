@@ -1,7 +1,9 @@
 package article
 
 import (
+	"fmt"
 	"gin-blog/models"
+	"gin-blog/pkg/e"
 	"testing"
 )
 
@@ -78,5 +80,11 @@ func (dao *mockArticleDao) DeleteArticle(id int) bool {
 }
 
 func TestService_GetArticle(t *testing.T) {
-	NewService(mockdao)
+	srv := NewService(&mockdao)
+	id := 1 //1~3 will pass
+	data, code := srv.GetArticle(id)
+	if code == e.ERROR_NOT_EXIST_ARTICLE {
+		t.Fail()
+	}
+	fmt.Printf("data:%+v |code:%v\n", data, code)
 }
