@@ -38,7 +38,7 @@ func init() {
 
 func Debug(v ...interface{}) {
 	setPrefix(DEBUG)
-	logger.Println(v)
+	logger.Println(v...)
 }
 
 func Info(v ...interface{}) {
