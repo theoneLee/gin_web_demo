@@ -79,6 +79,7 @@ func (dao *mockArticleDao) DeleteArticle(id int) bool {
 	return true
 }
 
+// 组件依赖mock
 func TestService_GetArticle(t *testing.T) {
 	srv := NewService(&mockdao)
 	id := 1 //1~3 will pass //todo 可做基于表的测试。整理web controller，service，dao 的最佳实践（上面的mockdao可以利用工具生成）
@@ -87,4 +88,50 @@ func TestService_GetArticle(t *testing.T) {
 		t.Fail()
 	}
 	fmt.Printf("data:%+v |code:%v\n", data, code)
+}
+
+//==========函数依赖============
+
+//待测试函数如果这样写，会导致该函数依赖无法由外部赋值
+func Reply(username, password string) bool {
+	if Login(username, password) {
+		fmt.Println("login success")
+		return true
+	}
+	return false
+}
+
+//应当这样写，才可以处理函数依赖
+var LoginStub = Login
+
+func Reply2(username, password string) bool {
+	if LoginStub(username, password) {
+		fmt.Println("login success")
+		return true
+	}
+	return false
+}
+
+func Login(username, password string) bool {
+	if username == password {
+		return true
+	} else {
+		return false
+	}
+}
+
+// 下面是Reply2的测试代码，可以在外部注入Login行为
+func TestSuccessReply(t *testing.T) {
+	ori := LoginStub
+	defer func() { LoginStub = ori }() //恢复LoginStub为未mock前的函数
+
+	//mock函数
+	LoginStub = func(username, password string) bool {
+		return true
+	}
+
+	if !Reply2("a", "b") {
+		t.Errorf("登陆成功，却回复失败") //正常情况是登陆成功，应该让他成功回复
+	}
+
 }
