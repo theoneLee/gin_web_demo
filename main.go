@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"gin-blog/models"
 	"gin-blog/pkg/setting"
 	"gin-blog/routers"
 	"net/http"
@@ -14,6 +15,9 @@ func main() {
 	//		"message": "test",
 	//	})
 	//})
+	setting.InitConfig()
+	models.InitMysql()
+
 	router := routers.InitRouter()
 
 	s := &http.Server{

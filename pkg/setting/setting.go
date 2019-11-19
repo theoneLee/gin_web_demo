@@ -20,7 +20,20 @@ var (
 	JwtSecret string
 )
 
-func init() {
+// 和mysql的init同理，应该手动调用，一来保证init顺序，二来让单元测试的go test ./...通过
+//func init() {
+//	var err error
+//	Cfg, err = ini.Load("conf/app.ini")
+//	if err != nil {
+//		log.Fatalf("Fail to parse 'conf/app.ini': %v", err)
+//	}
+//
+//	LoadBase()
+//	LoadServer()
+//	LoadApp()
+//}
+
+func InitConfig() {
 	var err error
 	Cfg, err = ini.Load("conf/app.ini")
 	if err != nil {
