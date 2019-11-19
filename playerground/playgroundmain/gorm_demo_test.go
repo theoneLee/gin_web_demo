@@ -1,10 +1,11 @@
-package main
+package playgroundmain
 
 import (
 	"flag"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"testing"
 	"time"
 )
 
@@ -36,7 +37,7 @@ var (
 	db *gorm.DB
 )
 
-func main() {
+func TestGormMain(t *testing.T) {
 	flag.Parse()
 	if len(*host) == 0 || *port == 0 || len(*user) == 0 ||
 		len(*passwd) == 0 || len(*dbName) == 0 {

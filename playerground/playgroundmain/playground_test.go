@@ -1,8 +1,11 @@
-package main
+package playgroundmain
 
-import pg "gin-blog/playerground"
+import (
+	pg "gin-blog/playerground"
+	"testing"
+)
 
-func main() {
+func TestPlayground(t *testing.T) {
 	var phone pg.Phone
 	phone = new(pg.NokiaPhone) //实现Phone接口
 	phone.Call()               // 包外使用需要Export 接口的方法

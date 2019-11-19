@@ -1,7 +1,8 @@
-package main
+package playgroundmain
 
 import (
 	"fmt"
+	"testing"
 	"time"
 )
 
@@ -11,15 +12,15 @@ import (
  如果一个结构体里面包含类型为切片的字段，拿更应该注意检查影响
 */
 
-type Counter2 struct {
-	count int
-}
+//type Counter2 struct {
+//	count int
+//}
+//
+//type CounterSlice2 struct {
+//	count []int
+//}
 
-type CounterSlice2 struct {
-	count []int
-}
-
-func main() {
+func TestValueAndPtr2(t *testing.T) {
 	var mapChan = make(chan map[string]*CounterSlice2, 1) // map是指针 CounterSlice2里面包了slice，指针类型 =》 运行结果还是外部修改会影响全局值
 	syncChan := make(chan struct{}, 2)
 	go func() {
@@ -51,9 +52,10 @@ func main() {
 	<-syncChan
 	<-syncChan
 }
-func (c *Counter2) String() string {
-	return fmt.Sprintf("{count: %d}", c.count)
-}
-func (c *CounterSlice2) String() string {
-	return fmt.Sprintf("{count: %d}", c.count)
-}
+
+//func (c *Counter2) String() string {
+//	return fmt.Sprintf("{count: %d}", c.count)
+//}
+//func (c *CounterSlice2) String() string {
+//	return fmt.Sprintf("{count: %d}", c.count)
+//}

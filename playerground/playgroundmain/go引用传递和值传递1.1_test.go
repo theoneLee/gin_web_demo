@@ -1,7 +1,8 @@
-package main
+package playgroundmain
 
 import (
 	"fmt"
+	"testing"
 	"time"
 )
 
@@ -16,7 +17,7 @@ type Counter1 struct {
 	count int
 }
 
-func main() {
+func TestValueAndPtr1_1(t *testing.T) {
 
 	//var mapChan = make(chan map[string]Counter,1)
 	var mapChan = make(chan map[string]Counter1, 1) // map是指针类型，Counter1是值类型 =》外部修改不会影响原本值
