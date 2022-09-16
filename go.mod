@@ -11,7 +11,7 @@ require (
 	github.com/golang/protobuf v1.3.1
 	github.com/jinzhu/gorm v1.9.11
 	github.com/kr/pretty v0.1.0 // indirect
-	github.com/moby/moby v1.13.1
+	github.com/moby/moby v20.10.18+incompatible
 	github.com/robfig/cron v1.2.0
 	github.com/smartystreets/goconvey v0.0.0-20190731233626-505e41936337 // indirect
 	github.com/unknwon/com v1.0.1
